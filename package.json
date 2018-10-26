@@ -18,7 +18,7 @@
     "gulp": "^3.9.1",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.0",
-    "gulp-sass": "^4.0.1",
+    "gulp-sass": "^4.0.2",
     "gulp-watch": "^5.0.0",
     "redux-devtools-extension": "^2.13.5",
     "webpack": "^4.12.0",
