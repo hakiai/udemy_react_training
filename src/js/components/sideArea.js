@@ -12,7 +12,6 @@ export default class SideArea extends React.Component {
     this.props.onSelect(id);
   }
 
-  }
   
   renderGroup() {
     let gtoupListDom = [];
