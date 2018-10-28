@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,9 +71,9 @@
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(7);
-} else {
   module.exports = __webpack_require__(8);
+} else {
+  module.exports = __webpack_require__(9);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
@@ -382,7 +382,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 var printWarning = function() {};
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactPropTypesSecret = __webpack_require__(9);
+  var ReactPropTypesSecret = __webpack_require__(10);
   var loggedTypeFailures = {};
 
   printWarning = function(text) {
@@ -466,6 +466,52 @@ module.exports = checkPropTypes;
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+function checkDCE() {
+  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
+  if (
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
+  ) {
+    return;
+  }
+  if (process.env.NODE_ENV !== 'production') {
+    // This branch is unreachable because this function is only called
+    // in production, but the condition is true only in development.
+    // Therefore if the branch is still here, dead code elimination wasn't
+    // properly applied.
+    // Don't change the message. React DevTools relies on it. Also make sure
+    // this message doesn't occur elsewhere in this function, or it will cause
+    // a false positive.
+    throw new Error('^_^');
+  }
+  try {
+    // Verify that the code above has been dead code eliminated (DCE'd).
+    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
+  } catch (err) {
+    // DevTools shouldn't crash React, no matter what.
+    // We should still report in case we break this code.
+    console.error(err);
+  }
+}
+
+if (process.env.NODE_ENV === 'production') {
+  // DCE check should happen before ReactDOM bundle executes so that
+  // DevTools can report bad minification during injection.
+  checkDCE();
+  module.exports = __webpack_require__(11);
+} else {
+  module.exports = __webpack_require__(14);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -562,7 +608,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -577,7 +623,7 @@ if (process.env.NODE_ENV === 'production') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -587,7 +633,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(10);
+var _reactDom = __webpack_require__(4);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -600,7 +646,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _reactDom2.default.render(_react2.default.createElement(_app2.default, null), document.getElementById('root'));
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -631,7 +677,7 @@ assign:m}},Y={default:X},Z=Y&&X||Y;module.exports=Z.default||Z;
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2365,7 +2411,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2384,52 +2430,6 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-function checkDCE() {
-  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
-  if (
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
-  ) {
-    return;
-  }
-  if (process.env.NODE_ENV !== 'production') {
-    // This branch is unreachable because this function is only called
-    // in production, but the condition is true only in development.
-    // Therefore if the branch is still here, dead code elimination wasn't
-    // properly applied.
-    // Don't change the message. React DevTools relies on it. Also make sure
-    // this message doesn't occur elsewhere in this function, or it will cause
-    // a false positive.
-    throw new Error('^_^');
-  }
-  try {
-    // Verify that the code above has been dead code eliminated (DCE'd).
-    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
-  } catch (err) {
-    // DevTools shouldn't crash React, no matter what.
-    // We should still report in case we break this code.
-    console.error(err);
-  }
-}
-
-if (process.env.NODE_ENV === 'production') {
-  // DCE check should happen before ReactDOM bundle executes so that
-  // DevTools can report bad minification during injection.
-  checkDCE();
-  module.exports = __webpack_require__(11);
-} else {
-  module.exports = __webpack_require__(14);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2446,7 +2446,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(0),n=__webpack_require__(4),ba=__webpack_require__(5);function ca(a,b,c,d,e,f,g,h){if(!a){a=void 0;if(void 0===b)a=Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var k=[c,d,e,f,g,h],l=0;a=Error(b.replace(/%s/g,function(){return k[l++]}));a.name="Invariant Violation"}a.framesToPop=1;throw a;}}
+var aa=__webpack_require__(0),n=__webpack_require__(5),ba=__webpack_require__(6);function ca(a,b,c,d,e,f,g,h){if(!a){a=void 0;if(void 0===b)a=Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var k=[c,d,e,f,g,h],l=0;a=Error(b.replace(/%s/g,function(){return k[l++]}));a.name="Invariant Violation"}a.framesToPop=1;throw a;}}
 function t(a){for(var b=arguments.length-1,c="https://reactjs.org/docs/error-decoder.html?invariant="+a,d=0;d<b;d++)c+="&args[]="+encodeURIComponent(arguments[d+1]);ca(!1,"Minified React error #"+a+"; visit %s for the full message or use the non-minified dev environment for full errors and additional helpful warnings. ",c)}aa?void 0:t("227");function da(a,b,c,d,e,f,g,h,k){var l=Array.prototype.slice.call(arguments,3);try{b.apply(c,l)}catch(m){this.onError(m)}}
 var ea=!1,fa=null,ha=!1,ia=null,ja={onError:function(a){ea=!0;fa=a}};function ka(a,b,c,d,e,f,g,h,k){ea=!1;fa=null;da.apply(ja,arguments)}function la(a,b,c,d,e,f,g,h,k){ka.apply(this,arguments);if(ea){if(ea){var l=fa;ea=!1;fa=null}else t("198"),l=void 0;ha||(ha=!0,ia=l)}}var ma=null,na={};
 function oa(){if(ma)for(var a in na){var b=na[a],c=ma.indexOf(a);-1<c?void 0:t("96",a);if(!pa[c]){b.extractEvents?void 0:t("97",a);pa[c]=b;c=b.eventTypes;for(var d in c){var e=void 0;var f=c[d],g=b,h=d;qa.hasOwnProperty(h)?t("99",h):void 0;qa[h]=f;var k=f.phasedRegistrationNames;if(k){for(e in k)k.hasOwnProperty(e)&&ra(k[e],g,h);e=!0}else f.registrationName?(ra(f.registrationName,g,h),e=!0):e=!1;e?void 0:t("98",d,a)}}}}
@@ -3147,9 +3147,9 @@ if (process.env.NODE_ENV !== "production") {
 'use strict';
 
 var React = __webpack_require__(0);
-var _assign = __webpack_require__(4);
+var _assign = __webpack_require__(5);
 var checkPropTypes = __webpack_require__(3);
-var schedule = __webpack_require__(5);
+var schedule = __webpack_require__(6);
 var tracing = __webpack_require__(15);
 
 /**
@@ -21894,20 +21894,108 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
 
-  function App() {
+  function App(props) {
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = {
+      groupList: [{
+        id: "inbox",
+        label: "受信箱"
+      }, {
+        id: "group-1",
+        label: "グループ１"
+      }],
+
+      todoList: {
+        "inbox": [{
+          id: "item-1",
+          label: "Todo1",
+          completed: false
+        }, {
+          id: "item-2",
+          label: "Todo2",
+          completed: false
+        }],
+        "group-1": [{
+          id: "item-3",
+          label: "Todo3",
+          completed: false
+        }, {
+          id: "item-4",
+          label: "Todo4",
+          completed: false
+        }]
+      },
+      todoCount: 4,
+      selectedGroup: "group-1"
+    };
+    return _this;
   }
 
   _createClass(App, [{
+    key: 'onAddTodo',
+    value: function onAddTodo(label) {
+      var _state = Object.assign({}, this.state);
+      _state.todoCount++;
+      var todoList = _state.todoList[_state.selectedGroup];
+      var todoItem = {
+        id: "item-" + _state.todoCount,
+        label: label,
+        completed: false
+      };
+      todoList.push(todoItem);
+      this.setState(_state);
+    }
+  }, {
+    key: 'onCompleteTodo',
+    value: function onCompleteTodo(id) {
+      var _state = Object.assign({}, this.state);
+      var todoList = _state.todoList[_state.selectedGroup];
+      for (var i = 0; i < todoList.length; i++) {
+        if (todoList[i].id == id) {
+          todoList[i].completed = true;
+          break;
+        }
+      }
+      this.setState(_state);
+    }
+  }, {
+    key: 'onDeleteTodo',
+    value: function onDeleteTodo(id) {
+      var _state = Object.assign({}, this.state);
+      var todoList = _state.todoList[_state.selectedGroup];
+      for (var i = 0; i < todoList.length; i++) {
+        if (todoList[i].id == id) {
+          todoList.splice(i, 1);
+          break;
+        }
+      }
+      this.setState(_state);
+    }
+  }, {
+    key: 'onSelectGroup',
+    value: function onSelectGroup(id) {
+      console.log("onSelectGroup", id);
+      this.setState({ selectedGroup: id });
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         { className: 'wrap' },
-        _react2.default.createElement(_sideArea2.default, null),
-        _react2.default.createElement(_mainArea2.default, null)
+        _react2.default.createElement(_sideArea2.default, {
+          groupList: this.state.groupList,
+          onSelect: this.onSelectGroup.bind(this)
+        }),
+        _react2.default.createElement(_mainArea2.default, {
+          todoList: this.state.todoList[this.state.selectedGroup],
+          onAddTodo: this.onAddTodo.bind(this),
+          onCompleteTodo: this.onCompleteTodo.bind(this),
+          onDeleteTodo: this.onDeleteTodo.bind(this)
+        })
       );
     }
   }]);
@@ -21934,6 +22022,10 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = __webpack_require__(4);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21945,16 +22037,48 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SideArea = function (_React$Component) {
   _inherits(SideArea, _React$Component);
 
-  function SideArea() {
+  function SideArea(props) {
     _classCallCheck(this, SideArea);
 
-    return _possibleConstructorReturn(this, (SideArea.__proto__ || Object.getPrototypeOf(SideArea)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (SideArea.__proto__ || Object.getPrototypeOf(SideArea)).call(this, props));
   }
 
   _createClass(SideArea, [{
-    key: "render",
+    key: 'onClickGroup',
+    value: function onClickGroup(event) {
+      var listItem = _reactDom2.default.findDOMNode(event.target);
+      var id = listItem.dataset.id;
+      this.props.onSelect(id);
+    }
+  }, {
+    key: 'renderGroup',
+    value: function renderGroup() {
+      var gtoupListDom = [];
+      for (var i = 0; i < this.props.groupList.length; i++) {
+        var group = this.props.groupList[i];
+        var groupItem = _react2.default.createElement(
+          'li',
+          { key: group.id,
+            'data-id': group.id,
+            onClick: this.onClickGroup.bind(this) },
+          group.label
+        );
+        gtoupListDom.push(groupItem);
+      }
+      return gtoupListDom;
+    }
+  }, {
+    key: 'render',
     value: function render() {
-      return _react2.default.createElement("div", { className: "side-area" });
+      return _react2.default.createElement(
+        'div',
+        { className: 'side-area' },
+        _react2.default.createElement(
+          'ul',
+          { className: 'group-list' },
+          this.renderGroup()
+        )
+      );
     }
   }]);
 
@@ -22009,15 +22133,6 @@ var MainArea = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (MainArea.__proto__ || Object.getPrototypeOf(MainArea)).call(this, props));
 
     _this.state = {
-      todos: [{
-        id: "item-1",
-        label: "Todo1",
-        completed: false
-      }, {
-        id: "item-2",
-        label: "Todo2",
-        completed: false
-      }],
       todoInputValue: ""
     };
     return _this;
@@ -22031,50 +22146,27 @@ var MainArea = function (_React$Component) {
   }, {
     key: 'onClickAddButton',
     value: function onClickAddButton(event) {
-      var addItem = { label: this.state.todoInputValue };
-      var todos = this.state.todos.slice();
-      todos.push(addItem);
-
-      this.setState({
-        todos: todos,
-        todoInputValue: ""
-      });
+      this.props.onAddTodo(this.state.todoInputValue);
     }
   }, {
     key: 'onCompleteTodo',
     value: function onCompleteTodo(id) {
-      console.log("onCompleteTodo", id);
-      var _state = Object.assign({}, this.state);
-      for (var i = 0; i < _state.todos.length; i++) {
-        if (_state.todos[i].id == id) {
-          _state.todos[i].completed = true;
-          break;
-        }
-      }
-
-      this.setState(_state);
+      this.props.onCompleteTodo(id);
     }
   }, {
     key: 'onDeleteTodo',
     value: function onDeleteTodo(id) {
-      var _state = Object.assign({}, this.state);
-      for (var i = 0; i < _state.todos.length; i++) {
-        if (_state.todos[i].id == id) {
-          _state.todos.splice(i, 1);
-          break;
-        }
-      }
-      this.setState(_state);
+      this.props.onDeleteTodo(id);
     }
   }, {
     key: 'renderTodoItems',
     value: function renderTodoItems() {
       var todoItemDOM = [];
-      for (var i = 0; i < this.state.todos.length; i++) {
-        if (!this.state.todos[i].completed) {
+      for (var i = 0; i < this.props.todoList.length; i++) {
+        if (!this.props.todoList[i].completed) {
           var todoItem = _react2.default.createElement(_listItem2.default, {
             key: "item-" + i,
-            data: this.state.todos[i],
+            data: this.props.todoList[i],
             completeTodo: this.onCompleteTodo.bind(this),
             deleteTodo: this.onDeleteTodo.bind(this)
           });

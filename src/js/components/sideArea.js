@@ -1,9 +1,39 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class SideArea extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  onClickGroup(event) {
+    let listItem = ReactDOM.findDOMNode(event.target);
+    let id = listItem.dataset.id;
+    this.props.onSelect(id);
+  }
+
+  }
+  
+  renderGroup() {
+    let gtoupListDom = [];
+    for (var i = 0; i < this.props.groupList.length; i++) {
+      let group = this.props.groupList[i];
+      let groupItem = (<li key={group.id}
+                            data-id={group.id}
+                            onClick={this.onClickGroup.bind(this) }>
+                        {group.label}
+                      </li>);
+      gtoupListDom.push(groupItem);
+    }
+    return gtoupListDom;
+  }
   render() {
     return (
-      <div className="side-area"></div>
+      <div className="side-area">
+        <ul className="group-list">
+          {this.renderGroup()}
+        </ul>
+      </div>
     )
   }
 }

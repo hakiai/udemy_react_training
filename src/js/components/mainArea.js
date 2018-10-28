@@ -8,18 +8,6 @@ export default class MainArea extends React.Component {
     super(props);
 
     this.state = {
-      todos: [
-        {
-          id:"item-1",
-          label: "Todo1",
-          completed: false
-        },
-        {
-          id:"item-2",
-          label: "Todo2",
-          completed: false
-        },
-      ],
       todoInputValue:""
     }
   }
@@ -29,47 +17,24 @@ export default class MainArea extends React.Component {
   }
 
   onClickAddButton(event) {
-    let addItem = { label: this.state.todoInputValue };
-    let todos = this.state.todos.slice();
-    todos.push(addItem);
-
-    this.setState({
-      todos: todos,
-      todoInputValue: ""
-    });
+    this.props.onAddTodo(this.state.todoInputValue);
   }
 
   onCompleteTodo(id) {
-    console.log("onCompleteTodo", id);
-    let _state = Object.assign({}, this.state);
-    for (var i = 0; i < _state.todos.length; i++) {
-      if (_state.todos[i].id == id) {
-        _state.todos[i].completed = true;
-        break;
-      }
-    }
-
-    this.setState(_state);
+    this.props.onCompleteTodo(id);
   }
 
   onDeleteTodo(id) {
-    let _state = Object.assign({}, this.state);
-    for (var i = 0; i < _state.todos.length; i++) {
-      if (_state.todos[i].id == id) {
-        _state.todos.splice(i, 1);
-        break;
-      }
-    }
-    this.setState(_state);
+    this.props.onDeleteTodo(id);
   }
 
   renderTodoItems() {
     let todoItemDOM = [];
-    for (var i = 0; i < this.state.todos.length; i++) {
-      if (!this.state.todos[i].completed) {
+    for (var i = 0; i < this.props.todoList.length; i++) {
+      if (!this.props.todoList[i].completed) {
         let todoItem = <ListItem
           key={"item-" + i}
-          data={this.state.todos[i]}
+          data={this.props.todoList[i]}
           completeTodo={this.onCompleteTodo.bind(this)}
           deleteTodo={this.onDeleteTodo.bind(this)}
         />;
