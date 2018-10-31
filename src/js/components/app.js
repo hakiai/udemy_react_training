@@ -45,7 +45,8 @@ export default class App extends React.Component {
                   ]
       },
       todoCount: 4,
-      selectedGroup: "group-1"
+      groupCount: 1,
+      selectedGroup: "inbox"
     }
   }
 
@@ -91,12 +92,28 @@ export default class App extends React.Component {
     this.setState({ selectedGroup: id });
   }
 
+  onAddGroup(groupName) {
+    let _state = Object.assign({}, this.state);
+    _state.groupCount++;
+    let groupId = "group-" + _state.groupCount;
+    let groupItem = {
+      id: groupId,
+      label: groupName
+    }
+    _state.groupList.push(groupItem);
+
+    _state.todoList[groupId] = [];
+    this.setState(_state);
+    console.log(this.state.todoList);
+  }
+
   render() {
     return (
       <div className="wrap">
         <SideArea
           groupList={this.state.groupList}
           onSelect={this.onSelectGroup.bind(this)}
+          onAddGroup={this.onAddGroup.bind(this)}
         />
         <MainArea
           todoList={this.state.todoList[this.state.selectedGroup]}
